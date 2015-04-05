@@ -27,8 +27,8 @@ class AmazonManager():
         self.session.headers.update(self.default_headers)
         self.login()
 
-    def __del__(self):
-        self.logout()
+    #def __del__(self):
+        #self.logout()
 
     
     def find_csrf_cookie(self):
@@ -177,7 +177,7 @@ if __name__ == "__main__":
         token = config.get('Trello', 'token')
         todo_list_id = config.get('Trello', 'todo_list_id')
         buy_list_id = config.get('Trello', 'buy_list_id')
-        poll_time_in_seconds = int(config.get('Trello', 'poll_time_in_seconds'))
+        poll_time_in_seconds = int(config.get('Schedule', 'poll_time_in_seconds'))
 
     except Exception:
         sys.exit("Invalid or missing config.txt file.")
@@ -191,5 +191,3 @@ if __name__ == "__main__":
         process_list("TASK", todo_list_id)
         process_list("SHOPPING_ITEM", buy_list_id)
         sleep(poll_time_in_seconds)
-
-        #TASK
