@@ -1,0 +1,15 @@
+[Amazon]
+Email: youremail
+Password: yourpassword
+
+
+[Trello]
+app_key: yourkey
+secret: yoursecret
+token: yourtoken
+board_id: yourboard
+todo_list_id: yourtodolist
+buy_list_id: yourshoppinglist
+
+[Schedule]
+poll_time_in_seconds: 10

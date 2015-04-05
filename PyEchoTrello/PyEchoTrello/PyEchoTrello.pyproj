@@ -25,6 +25,7 @@
     <Compile Include="PyEchoTrello.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="config.sample.txt" />
     <Content Include="config.txt" />
   </ItemGroup>
   <PropertyGroup>
