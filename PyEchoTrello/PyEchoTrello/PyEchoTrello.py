@@ -6,6 +6,7 @@ import requests
 import sys
 import urllib
 import pprint
+import getopt
 from time import sleep
 
 class AmazonManager():
@@ -150,7 +151,7 @@ class TrelloManager():
                 query_params={'key': self.app_key, 'token' : self.token},)
     
 
-def process_list(type, trello_list_id):
+def process_list(manager, trello, type, trello_list_id):
             # Get all the items on your shopping list
         items = manager.fetch_items(type)
 
@@ -162,7 +163,14 @@ def process_list(type, trello_list_id):
         # Delete from the Echo
         manager.delete_items(items)
 
-if __name__ == "__main__":
+def main(argv):
+    
+    #process command line args
+    single_run = False
+    opts, args = getopt.getopt(argv, "s")
+    for opt, arg in opts:
+        if opt == "-s":
+            single_run = True
 
     # Load the config info from the config.txt file
     config = configparser.ConfigParser()
@@ -188,6 +196,12 @@ if __name__ == "__main__":
 
     while True:
         print(".")
-        process_list("TASK", todo_list_id)
-        process_list("SHOPPING_ITEM", buy_list_id)
+        process_list(manager, trello, "TASK", todo_list_id)
+        process_list(manager, trello, "SHOPPING_ITEM", buy_list_id)
         sleep(poll_time_in_seconds)
+        if single_run:
+            break
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
