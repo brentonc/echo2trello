@@ -195,13 +195,12 @@ def main(argv):
     trello = TrelloManager(app_key, secret, token)
 
     while True:
-        print(".")
         process_list(manager, trello, "TASK", todo_list_id)
         process_list(manager, trello, "SHOPPING_ITEM", buy_list_id)
-        sleep(poll_time_in_seconds)
         if single_run:
             break
-
+        sleep(poll_time_in_seconds)
+        print(".")
 
 if __name__ == "__main__":
     main(sys.argv[1:])
